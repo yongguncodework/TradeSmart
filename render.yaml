@@ -1,0 +1,25 @@
+# Streamlit Community Cloud — zero-cost portfolio preview
+# https://share.streamlit.io
+#
+# Main file: streamlit_app.py
+# Secrets (optional — mock works with NO secrets):
+#   TRADESMART_MOCK = "true"
+#
+# Do NOT add OPENAI_API_KEY here unless you accept API charges.
+
+services:
+  - type: web
+    name: tradesmart-demo
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerCommand: >
+      streamlit run streamlit_app.py
+      --server.port=$PORT
+      --server.address=0.0.0.0
+      --browser.gatherUsageStats=false
+    envVars:
+      - key: TRADESMART_MOCK
+        value: "true"
+      - key: PYTHONUNBUFFERED
+        value: "1"

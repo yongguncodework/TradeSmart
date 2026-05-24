@@ -1,0 +1,103 @@
+{
+  "query": "SOXL ran from ~68 to ~190. I bought 14 @ 188.89 and 20 @ 168.74, and sold 20 @ 166. Should I hold or trim? How does this compare to my past trades and RSI?",
+  "thesis": "SOXL is in an extended rally near 52-week highs after a sharp run from the ~128 accumulation zone. Your journal shows a prior successful trim at 166 (+31.5% swing context) and recent layered buys at 168.74 and 188.89 — a pattern of scaling in during momentum. With RSI elevated and chase risk flagged, a partial trim (not full exit) aligns with both your SOXL playbook (leveraged ETF trim after vertical moves) and your own history of taking profits near local highs.",
+  "agent_plan": {
+    "playbook": true,
+    "journal": true,
+    "market": true,
+    "technicals": true,
+    "risk": true,
+    "rationale": "Planner selected: playbook RAG, trade journal RAG, market snapshots, technical indicators, risk engine."
+  },
+  "market_context": [
+    {
+      "symbol": "SOXL",
+      "price": 190.56,
+      "change_pct_1d": 6.82,
+      "change_pct_5d": 16.07,
+      "volume_ratio": 0.73,
+      "fifty_two_week_position": 0.974,
+      "error": null
+    },
+    {
+      "symbol": "SMH",
+      "price": 312.4,
+      "change_pct_1d": 2.1,
+      "change_pct_5d": 5.8,
+      "volume_ratio": 1.05,
+      "fifty_two_week_position": 0.91,
+      "error": null
+    }
+  ],
+  "technical_context": [
+    {
+      "symbol": "SOXL",
+      "price": 190.56,
+      "rsi_14": 78.2,
+      "macd": 4.82,
+      "macd_signal": 3.15,
+      "sma_20": 172.4,
+      "sma_50": 155.8,
+      "sma_200": 98.6,
+      "atr_14": 8.45,
+      "drawdown_from_60d_high_pct": -0.8,
+      "price_vs_sma200_pct": 93.2,
+      "error": null
+    }
+  ],
+  "playbook_matches": [
+    {
+      "source": "data/playbooks/soxl_playbook.md",
+      "content": "Max portfolio allocation: 8% for leveraged ETF sleeve.\nIf SOXL daily move exceeds ±8%, no new entries until next session.\nTake partial profits at extended moves; rotate to cash when SOXL whipsaws.",
+      "score": null
+    }
+  ],
+  "journal_matches": [
+    {
+      "source": "journal:soxl-003",
+      "content": "Symbol: SOXL\nAction: sell\nShares: 20\nPrice: 166.0\nSetup: swing_exit\nOutcome: 31.5%\nNotes: Sold 20 SOXL at 166.00 to lock profits after sharp rally from ~128 area.",
+      "symbol": "SOXL",
+      "action": "sell",
+      "score": null
+    },
+    {
+      "source": "journal:soxl-006",
+      "content": "Symbol: SOXL\nAction: buy\nShares: 14\nPrice: 188.89\nSetup: breakout_add\nNotes: Added 14 shares near 188.89 during rapid rally toward 190.",
+      "symbol": "SOXL",
+      "action": "buy",
+      "score": null
+    },
+    {
+      "source": "journal:soxl-summary",
+      "content": "Personal SOXL pattern: scaled in from 126-128 lows, sold 20 @ 166 for profit, re-entered with layered buys at 168.74, 187.14, and 188.89.",
+      "symbol": "SOXL",
+      "action": "position_summary",
+      "score": null
+    }
+  ],
+  "risk_flags": [
+    {
+      "severity": "low",
+      "rule": "extended_price",
+      "message": "SOXL is near 52-week highs (position=0.974). Chase risk is elevated."
+    },
+    {
+      "severity": "medium",
+      "rule": "rsi_overbought",
+      "message": "SOXL RSI14=78.2 — overbought zone; trim/add risk is elevated for leveraged products."
+    },
+    {
+      "severity": "medium",
+      "rule": "extended_rally",
+      "message": "SOXL is near 60-day highs (drawdown -0.8%) with elevated RSI — parabolic rally risk."
+    }
+  ],
+  "action_items": [
+    "Consider trimming 25-40% to lock profits — mirrors your prior successful exit at 166.",
+    "Keep a trailing stop below SMA20 (~172) or last pullback low for remaining shares.",
+    "Do not add new size until RSI cools or SOXL holds a post-trim base.",
+    "Watch SMH/QQQ for sector confirmation before holding full remaining position."
+  ],
+  "disclaimer": "Portfolio preview sample — not live AI output. Not financial advice.",
+  "_mock": true
+}

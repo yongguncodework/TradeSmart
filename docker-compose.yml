@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    container_name: tradesmart-api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/app/data/chroma
+    command: ["sh", "docker/entrypoint-api.sh"]
+    restart: unless-stopped
+
+  demo:
+    build: .
+    container_name: tradesmart-demo
+    env_file:
+      - .env
+    environment:
+      TRADESMART_API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    command: ["sh", "docker/entrypoint-demo.sh"]
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
