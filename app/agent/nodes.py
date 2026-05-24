@@ -22,6 +22,28 @@ DISCLAIMER = (
     "support only. Verify data independently and respect your own risk limits."
 )
 
+DISCLAIMER_KO = (
+    "투자 조언이 아닙니다. TradeSmrt는 개인 의사결정 지원용 리서치 브리프만 제공합니다. "
+    "데이터는 직접 확인하고 본인의 리스크 한도를 지키세요."
+)
+
+LANGUAGE_INSTRUCTIONS = {
+    "en": "Write thesis and action_items in English.",
+    "ko": "Write thesis and action_items in Korean (한국어). Keep ticker symbols and numbers as-is.",
+}
+
+
+def get_disclaimer(lang: str | None = None) -> str:
+    if lang and lang.lower().startswith("ko"):
+        return DISCLAIMER_KO
+    return DISCLAIMER
+
+
+def _language_instruction(lang: str | None) -> str:
+    if lang and lang.lower().startswith("ko"):
+        return LANGUAGE_INSTRUCTIONS["ko"]
+    return LANGUAGE_INSTRUCTIONS["en"]
+
 SYNTHESIS_SYSTEM_PROMPT = """You are TradeSmrt V2, a disciplined trading research copilot.
 You help a trader who focuses on Bitcoin (BTC-USD), broad ETFs (QQQ, SPY), and SOXL.
 
@@ -166,6 +188,8 @@ Similar past trades (journal RAG):
 
 Risk flags:
 {risk_flags_to_prompt_block(state["risk_flags"])}
+
+{_language_instruction(state.get("response_language"))}
 
 Respond with JSON: {{"thesis": "...", "action_items": ["...", "..."]}}
 """

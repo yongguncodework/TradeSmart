@@ -1,0 +1,103 @@
+{
+  "query": "SOXL이 약 68에서 190까지 올랐어. 188.89에 14주, 168.74에 20주 매수했고 166에 20주 매도했어. 홀드할까 일부 익절할까? 과거 매매·RSI와 비교해줘.",
+  "thesis": "SOXL은 ~128 누적 구간에서 급등한 뒤 52주 고점 근처에서 과열 구간에 있습니다. 매매일지상 166에서의 성공적 익절(+31.5% 스윙 맥락)과 168.74·188.89의 최근 분할 매수 — 모멘텀 구간에서 물량을 쌓는 패턴이 반복되고 있습니다. RSI가 높고 추격 매수 리스크가 플래그된 상태에서는, SOXL 플레이북(레버리지 ETF 급등 후 부분 익절)과 고점 근처에서 이익 실현했던 본인 기록 모두 **전량 청산이 아닌 부분 익절**을 지지합니다.",
+  "agent_plan": {
+    "playbook": true,
+    "journal": true,
+    "market": true,
+    "technicals": true,
+    "risk": true,
+    "rationale": "플래너 선택: 플레이북 RAG, 매매일지 RAG, 시장 스냅샷, 기술적 지표, 리스크 엔진."
+  },
+  "market_context": [
+    {
+      "symbol": "SOXL",
+      "price": 190.56,
+      "change_pct_1d": 6.82,
+      "change_pct_5d": 16.07,
+      "volume_ratio": 0.73,
+      "fifty_two_week_position": 0.974,
+      "error": null
+    },
+    {
+      "symbol": "SMH",
+      "price": 312.4,
+      "change_pct_1d": 2.1,
+      "change_pct_5d": 5.8,
+      "volume_ratio": 1.05,
+      "fifty_two_week_position": 0.91,
+      "error": null
+    }
+  ],
+  "technical_context": [
+    {
+      "symbol": "SOXL",
+      "price": 190.56,
+      "rsi_14": 78.2,
+      "macd": 4.82,
+      "macd_signal": 3.15,
+      "sma_20": 172.4,
+      "sma_50": 155.8,
+      "sma_200": 98.6,
+      "atr_14": 8.45,
+      "drawdown_from_60d_high_pct": -0.8,
+      "price_vs_sma200_pct": 93.2,
+      "error": null
+    }
+  ],
+  "playbook_matches": [
+    {
+      "source": "data/playbooks/soxl_playbook.md",
+      "content": "Max portfolio allocation: 8% for leveraged ETF sleeve.\nIf SOXL daily move exceeds ±8%, no new entries until next session.\nTake partial profits at extended moves; rotate to cash when SOXL whipsaws.",
+      "score": null
+    }
+  ],
+  "journal_matches": [
+    {
+      "source": "journal:soxl-003",
+      "content": "Symbol: SOXL\nAction: sell\nShares: 20\nPrice: 166.0\nSetup: swing_exit\nOutcome: 31.5%\nNotes: Sold 20 SOXL at 166.00 to lock profits after sharp rally from ~128 area.",
+      "symbol": "SOXL",
+      "action": "sell",
+      "score": null
+    },
+    {
+      "source": "journal:soxl-006",
+      "content": "Symbol: SOXL\nAction: buy\nShares: 14\nPrice: 188.89\nSetup: breakout_add\nNotes: Added 14 shares near 188.89 during rapid rally toward 190.",
+      "symbol": "SOXL",
+      "action": "buy",
+      "score": null
+    },
+    {
+      "source": "journal:soxl-summary",
+      "content": "Personal SOXL pattern: scaled in from 126-128 lows, sold 20 @ 166 for profit, re-entered with layered buys at 168.74, 187.14, and 188.89.",
+      "symbol": "SOXL",
+      "action": "position_summary",
+      "score": null
+    }
+  ],
+  "risk_flags": [
+    {
+      "severity": "low",
+      "rule": "extended_price",
+      "message": "SOXL 52주 고점 근처 (position=0.974). 추격 매수 리스크가 높습니다."
+    },
+    {
+      "severity": "medium",
+      "rule": "rsi_overbought",
+      "message": "SOXL RSI14=78.2 — 과매수 구간; 레버리지 상품은 익절/추가 매수 리스크가 높습니다."
+    },
+    {
+      "severity": "medium",
+      "rule": "extended_rally",
+      "message": "SOXL 60일 고점 근처 (drawdown -0.8%) + RSI 상승 — 급등(패러볼릭) 리스크."
+    }
+  ],
+  "action_items": [
+    "25–40% 부분 익절 검토 — 166에서의 성공적 청산과 유사한 패턴.",
+    "잔여 물량은 SMA20(~172) 또는 최근 조정 저점 아래 트레일링 스탑 설정.",
+    "RSI가 냉각되거나 익절 후 베이스가 형성될 때까지 신규 비중 추가 금지.",
+    "잔여 포지션 유지 전 SMH/QQQ 섹터 확인."
+  ],
+  "disclaimer": "포트폴리오 미리보기 샘플 — 실시간 AI 출력이 아닙니다. 투자 조언이 아닙니다.",
+  "_mock": true
+}

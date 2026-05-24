@@ -5,11 +5,24 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-SAMPLE_PATH = Path(__file__).resolve().parent / "sample_response.json"
+from demo.i18n import normalize_lang
+
+DEMO_DIR = Path(__file__).resolve().parent
+SAMPLE_PATH = DEMO_DIR / "sample_response.json"
 
 
-def load_sample_response() -> dict:
-    with SAMPLE_PATH.open(encoding="utf-8") as f:
+def sample_path_for_lang(lang: str | None) -> Path:
+    code = normalize_lang(lang)
+    if code == "ko":
+        ko_path = DEMO_DIR / "sample_response.ko.json"
+        if ko_path.exists():
+            return ko_path
+    return SAMPLE_PATH
+
+
+def load_sample_response(lang: str | None = None) -> dict:
+    path = sample_path_for_lang(lang)
+    with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -23,8 +36,9 @@ def mock_health() -> dict:
     }
 
 
-def run_research_mock(_payload: dict) -> dict:
+def run_research_mock(payload: dict) -> dict:
     """Return canned demo output instantly — $0 API cost."""
-    sample = load_sample_response()
-    sample["query"] = _payload.get("query") or sample["query"]
+    lang = payload.get("response_language")
+    sample = load_sample_response(lang)
+    sample["query"] = payload.get("query") or sample["query"]
     return sample

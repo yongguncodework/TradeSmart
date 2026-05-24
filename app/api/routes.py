@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Query
 
 from app import __version__
 from app.agent.graph import research_agent
-from app.agent.nodes import DISCLAIMER
+from app.agent.nodes import get_disclaimer
 from app.api.schemas import AgentPlan, HealthResponse, ResearchRequest, ResearchResponse
 from app.config import get_settings
 from app.rag.journal_store import build_journal_store
@@ -70,6 +70,7 @@ async def run_research(
         "query": payload.query,
         "symbols": payload.symbols,
         "position_size_pct": payload.position_size_pct,
+        "response_language": payload.response_language,
         "plan": {},
         "playbook_matches": [],
         "journal_matches": [],
@@ -100,6 +101,6 @@ async def run_research(
         journal_matches=result.get("journal_matches", []),
         risk_flags=result.get("risk_flags", []),
         action_items=result.get("action_items", []),
-        disclaimer=DISCLAIMER,
+        disclaimer=get_disclaimer(payload.response_language),
         raw_trace=result.get("trace") if include_trace else None,
     )

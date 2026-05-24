@@ -1,5 +1,7 @@
 # TradeSmart
 
+**English** | [한국어 README](docs/README.ko.md)
+
 **AI trading research copilot for Bitcoin, ETFs, and SOXL**
 
 Ask a trading question → get a structured brief grounded in **your playbooks**, **past trades**, **market data**, **technical indicators**, and **risk rules**.
@@ -140,7 +142,7 @@ streamlit run streamlit_app.py
 
 | URL | What |
 |-----|------|
-| http://127.0.0.1:8501 | Streamlit UI |
+| http://127.0.0.1:8501 | Streamlit UI (sidebar **Language** toggle: English / 한국어) |
 | http://127.0.0.1:8000/docs | API Swagger |
 
 **Sample mode (no API key):** `$env:TRADESMART_MOCK="true"; streamlit run streamlit_app.py`

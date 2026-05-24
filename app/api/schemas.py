@@ -1,8 +1,10 @@
 """Pydantic schemas for API requests and responses."""
 
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
+
+ResponseLanguage = Literal["en", "ko"]
 
 
 class ResearchRequest(BaseModel):
@@ -25,6 +27,10 @@ class ResearchRequest(BaseModel):
         ge=0,
         le=100,
         description="Optional planned position size as % of portfolio.",
+    )
+    response_language: ResponseLanguage = Field(
+        default="en",
+        description="Language for thesis and action items (en or ko).",
     )
 
 

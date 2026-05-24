@@ -19,6 +19,7 @@ class AgentState(TypedDict):
     query: str
     symbols: list[str]
     position_size_pct: float | None
+    response_language: str
     plan: dict[str, Any]
     playbook_matches: list[PlaybookMatch]
     journal_matches: list[JournalMatch]

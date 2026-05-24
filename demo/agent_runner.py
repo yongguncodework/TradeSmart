@@ -11,7 +11,7 @@ if str(ROOT) not in sys.path:
 
 from app import __version__
 from app.agent.graph import research_agent
-from app.agent.nodes import DISCLAIMER
+from app.agent.nodes import get_disclaimer
 from app.api.schemas import AgentPlan
 from app.config import get_settings
 from app.rag.journal_store import build_journal_store
@@ -64,6 +64,7 @@ def run_research_direct(payload: dict) -> dict:
         "query": payload["query"],
         "symbols": payload["symbols"],
         "position_size_pct": payload.get("position_size_pct"),
+        "response_language": payload.get("response_language", "en"),
         "plan": {},
         "playbook_matches": [],
         "journal_matches": [],
@@ -89,6 +90,6 @@ def run_research_direct(payload: dict) -> dict:
         "journal_matches": [_model_dump(x) for x in result.get("journal_matches", [])],
         "risk_flags": [_model_dump(x) for x in result.get("risk_flags", [])],
         "action_items": result.get("action_items", []),
-        "disclaimer": DISCLAIMER,
+        "disclaimer": get_disclaimer(payload.get("response_language")),
         "raw_trace": result.get("trace"),
     }
